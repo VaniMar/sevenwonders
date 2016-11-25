@@ -6,10 +6,7 @@ package org.fundacionjala.sevenwonders.beans;
 
 import com.google.common.base.Preconditions;
 import org.fundacionjala.sevenwonders.core.Game;
-import org.fundacionjala.sevenwonders.core.rest.CardModel;
-import org.fundacionjala.sevenwonders.core.rest.DeckModel;
-import org.fundacionjala.sevenwonders.core.rest.PlayerModel;
-import org.fundacionjala.sevenwonders.core.rest.PrincipalGameModel;
+import org.fundacionjala.sevenwonders.core.rest.*;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -96,6 +93,15 @@ public class GameService {
      */
     public Game getGame(int id){
         return games.get(id);
+    }
+
+    public List<ResourceModel> getStorage(int idGame, int idPlayer) {
+        Game game = games.get(idGame);
+        PlayerModel player = convertToGameModel(game, idGame).getPlayers()
+                .stream()
+                .filter(b ->b.getId() == idPlayer).findAny()
+                .orElse(null);
+        return null;
     }
 
 }

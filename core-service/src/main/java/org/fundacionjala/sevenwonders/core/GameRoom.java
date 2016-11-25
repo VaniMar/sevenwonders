@@ -6,6 +6,7 @@ package org.fundacionjala.sevenwonders.core;
 
 import com.google.common.base.Preconditions;
 import org.fundacionjala.sevenwonders.core.rest.PlayerModel;
+import org.fundacionjala.sevenwonders.core.rest.ResourceModel;
 import org.fundacionjala.sevenwonders.core.rest.WonderModel;
 
 import java.util.ArrayList;
@@ -71,13 +72,21 @@ public class GameRoom {
         players.stream().forEach(item -> {
             Wonder currentWonder = wonders.remove(random.nextInt(wonders.size()));
             StoragePoint storagePoint = new StoragePoint();
-            Storage storage = new Storage();
-            City city = new City(currentWonder, storagePoint, storage);
+            StorageProvider storageProvider = new StorageProvider();
+            storageProvider.fillResources();
+            City city = new City(currentWonder, storagePoint, storageProvider.getStorage());
             Player player = new Player(item.getUserName(), city);
             WonderModel wonderModel = new WonderModel();
             wonderModel.setCurrentSide(DEFAULT_SIDE);
             wonderModel.setCityName(currentWonder.getName());
             item.setWonderModel(wonderModel);
+
+            List<ResourceModel> storage = new ArrayList<ResourceModel>();
+
+//            for ( ResourceModel current: storage) {
+//                current.setCount(player.getCity().getStorage().getResourceQuantity(current.getName()));
+//            }
+
             gamePlayers.add(player);
         });
 

@@ -7,6 +7,8 @@ package org.fundacionjala.sevenwonders.core.rest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.List;
+
 /**
  * Created by Juan Manuel Barahona on 05/08/2016.
  */
@@ -18,6 +20,15 @@ public class PlayerModel {
     private WonderModel wonderModel;
     private boolean isReady = false;
     private DeckModel deck;
+    private List<ResourceModel> storageModel;
+
+    public void setStorageModel(List<ResourceModel> storageModel) {
+        this.storageModel = storageModel;
+    }
+
+    public List<ResourceModel> getStorageModel() {
+        return storageModel;
+    }
 
     public DeckModel getDeck() {
         return deck;
