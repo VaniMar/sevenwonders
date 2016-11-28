@@ -101,7 +101,7 @@ public class GameService {
                 .stream()
                 .filter(b ->b.getId() == idPlayer).findAny()
                 .orElse(null);
-        return null;
+        return player.getStorageModel();
     }
 
 }

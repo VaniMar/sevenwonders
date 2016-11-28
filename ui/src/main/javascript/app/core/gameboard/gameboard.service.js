@@ -7,7 +7,10 @@ angular.
                 return {
                   getStorage: function () {
                       var defer = $q.defer();
-                      Restangular.allUrl('storage', 'http://demo5549833.mockable.io/storage').getList()
+                      var loggedUser = $cookies.getObject('user');
+
+                      //Restangular.allUrl('storage', 'http://demo5549833.mockable.io/storage').getList()
+                      Restangular.one('storage', Game.getCurrentGame().id + '/players/' + loggedUser.id).getList('storage')
                                  .then(function (data) {
                                        defer.resolve(data);
                                  }).catch(function () {
