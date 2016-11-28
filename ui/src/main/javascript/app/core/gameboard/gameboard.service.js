@@ -10,8 +10,9 @@ angular.
                       var loggedUser = $cookies.getObject('user');
 
                       //Restangular.allUrl('storage', 'http://demo5549833.mockable.io/storage').getList()
-                      Restangular.one('storage', Game.getCurrentGame().id + '/players/' + loggedUser.id).getList('storage')
+                      Restangular.one('game', Game.getCurrentGame().id).one('players', loggedUser.id).getList('storage')
                                  .then(function (data) {
+                                       console.log(data);
                                        defer.resolve(data);
                                  }).catch(function () {
                                        defer.reject();

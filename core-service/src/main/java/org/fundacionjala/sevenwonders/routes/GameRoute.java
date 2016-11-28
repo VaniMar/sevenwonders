@@ -32,7 +32,7 @@ public class GameRoute extends SpringRouteBuilder {
                 .to("bean:gameService?method=getPlayers(${header.id})")
 
                 .get("{id}/players/{idPlayer}/storage").description("Get list of the resources").typeList(ResourceModel.class)
-                .to("bean:gameService?method=getStorage(${header.id}), ${{header.idPlayer}}")
+                .to("bean:gameService?method=getStorage(${header.id}, ${header.idPlayer})")
 
                 .verb("options")
                 .route()
