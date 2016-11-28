@@ -20,15 +20,7 @@ public class PlayerModel {
     private WonderModel wonderModel;
     private boolean isReady = false;
     private DeckModel deck;
-    private List<ResourceModel> storageModel;
-
-    public void setStorageModel(List<ResourceModel> storageModel) {
-        this.storageModel = storageModel;
-    }
-
-    public List<ResourceModel> getStorageModel() {
-        return storageModel;
-    }
+    private CityModel cityModel;
 
     public DeckModel getDeck() {
         return deck;
@@ -73,6 +65,10 @@ public class PlayerModel {
     public void setWonderModel(WonderModel wonderModel) {
         this.wonderModel = wonderModel;
     }
+
+    public CityModel getCity() { return cityModel; }
+
+    public void setCity(CityModel cityModel) { this.cityModel = cityModel; }
 
     @Override
     public String toString() {

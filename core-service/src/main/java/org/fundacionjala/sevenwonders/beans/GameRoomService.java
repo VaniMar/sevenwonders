@@ -4,7 +4,7 @@
  */
 package org.fundacionjala.sevenwonders.beans;
 
-import org.fundacionjala.sevenwonders.core.GameRoom;
+import org.fundacionjala.sevenwonders.core.*;
 import org.fundacionjala.sevenwonders.core.rest.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,6 +28,7 @@ public class GameRoomService {
 
     public GameRoomService() {
         autoIncrementId = 1;
+        gameService = new GameService();
     }
 
     public GameService getGameService() {
@@ -85,7 +86,9 @@ public class GameRoomService {
             room.setPlayers(entry.getValue().getPlayers());
             room.setChannel("game-" + entry.getKey());
             room.setId(entry.getKey());
-            currentGameRoomModels.add(room);
+            if (!entry.getValue().isRun()) {
+                currentGameRoomModels.add(room);
+            }
         });
 
         return currentGameRoomModels;
@@ -173,6 +176,22 @@ public class GameRoomService {
         return gameRooms.get(id).getMaxPlayers() == gameRooms.get(id).getPlayers().size();
     }
 
+    public void updateGameRoom(int id){
+        gameRooms.get(id).setRun(true);
+    }
+
+    public boolean isFullChooseCard(int id){
+        return gameService.getGame(id).getChooseCard().size() == gameRooms.get(id).getPlayers().size();
+    }
+
+    public ChooseCardModel getChooseCardModel(ChooseCardModel chooseCardModel){
+        chooseCardModel.setAge(gameService.getAgeCard());
+        return chooseCardModel;
+    }
+
+    public void addChooseCard(ChooseCardModel chooseCardModel){
+        gameService.addChooseCard(chooseCardModel);
+    }
 
     public boolean isGameReady(int id){
         GameRoom gameRoom = gameRooms.get(id);

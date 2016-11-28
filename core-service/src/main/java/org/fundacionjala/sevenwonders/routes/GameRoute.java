@@ -6,6 +6,7 @@ package org.fundacionjala.sevenwonders.routes;
 
 import org.apache.camel.spring.SpringRouteBuilder;
 import org.fundacionjala.sevenwonders.core.rest.PlayerModel;
+import org.fundacionjala.sevenwonders.core.rest.PointsModel;
 import org.fundacionjala.sevenwonders.core.rest.PrincipalGameModel;
 import org.fundacionjala.sevenwonders.core.rest.ResourceModel;
 import org.springframework.stereotype.Component;
@@ -33,6 +34,9 @@ public class GameRoute extends SpringRouteBuilder {
 
                 .get("{id}/players/{idPlayer}/storage").description("Get list of the resources").typeList(ResourceModel.class)
                 .to("bean:gameService?method=getStorage(${header.id}, ${header.idPlayer})")
+
+                .get("/points").description("Get points of a player").type(PointsModel.class)
+                .to("bean:gameService?method=getPoints(${body})")
 
                 .verb("options")
                 .route()
