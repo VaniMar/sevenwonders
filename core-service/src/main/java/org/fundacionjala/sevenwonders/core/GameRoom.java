@@ -80,13 +80,6 @@ public class GameRoom {
             wonderModel.setCurrentSide(DEFAULT_SIDE);
             wonderModel.setCityName(currentWonder.getName());
             item.setWonderModel(wonderModel);
-            List<ResourceModel> storage = new ArrayList<>();
-
-            for ( ResourceModel current: storage) {
-                current.setCount(player.getCity().getStorage().getResourceQuantity(ResourceType.valueOf(current.getName())));
-            }
-
-            item.setStorageModel(storage);
             player.setId(item.getId());
             gamePlayers.add(player);
         });

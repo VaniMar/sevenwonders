@@ -17,8 +17,8 @@ angular.
             return {
                 getStorage: function () {
                     var defer = $q.defer();
-                    //Restangular.allUrl('storage', 'http://demo5549833.mockable.io/storage').getList()
-                    Restangular.one('game', Game.getCurrentGame().id).one('players', loggedUser.id).getList('storage')
+                   // Restangular.one('game', Game.getCurrentGame().id).one('players', loggedUser.id).getList('storage')
+                   Restangular.allUrl('storage', 'http://demo5549833.mockable.io/storage').getList()
                         .then(function (data) {
                             defer.resolve(data);
                         }).catch(function () {

@@ -32,8 +32,8 @@ public class GameRoute extends SpringRouteBuilder {
                 .get("{id}/players").description("Get list of players").typeList(PlayerModel.class)
                 .to("bean:gameService?method=getPlayers(${header.id})")
 
-                .get("{id}/players/{idPlayer}/storage").description("Get list of the resources").typeList(ResourceModel.class)
-                .to("bean:gameService?method=getStorage(${header.id}, ${header.idPlayer})")
+                //.get("{id}/players/{idPlayer}/storage").description("Get list of the resources").typeList(ResourceModel.class)
+                //.to("bean:gameService?method=getStorage(${header.id}, ${header.idPlayer})")
 
                 .get("/points").description("Get points of a player").type(PointsModel.class)
                 .to("bean:gameService?method=getPoints(${body})")

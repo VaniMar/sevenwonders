@@ -5,10 +5,7 @@
 package org.fundacionjala.sevenwonders.beans;
 
 import com.google.common.base.Preconditions;
-import org.fundacionjala.sevenwonders.core.Building;
-import org.fundacionjala.sevenwonders.core.Card;
-import org.fundacionjala.sevenwonders.core.Game;
-import org.fundacionjala.sevenwonders.core.Player;
+import org.fundacionjala.sevenwonders.core.*;
 import org.fundacionjala.sevenwonders.core.calculator.CalculatorType;
 import org.fundacionjala.sevenwonders.core.rest.*;
 import org.springframework.stereotype.Component;
@@ -86,6 +83,14 @@ public class GameService {
             playerModel.setId(player.getId());
 
             playerModel.setUserName(player.getName());
+
+//            List<ResourceModel> storage = new ArrayList<>();
+//
+//            for ( ResourceModel current: storage) {
+//                current.setCount(player.getCity().getStorage().getResourceQuantity(ResourceType.valueOf(current.getName())));
+//            }
+//
+//            playerModel.getCity().setStorageModel(storage);
             players.add(playerModel);
         });
 
